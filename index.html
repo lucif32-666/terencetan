@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terence Tan — Digital Marketing & Content Strategist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f4f0;
+      --accent: #e63c2f;
+      --mid: #6b6b6b;
+      --border: #d8d6d0;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+      mix-blend-mode: multiply;
+    }
+    .cursor.hover {
+      width: 40px; height: 40px;
+      background: var(--black);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      animation: fadeDown 0.6s ease both;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--black);
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-text { animation: fadeUp 0.8s 0.2s ease both; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 9vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--mid);
+      max-width: 44ch;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      transition: background 0.2s, gap 0.2s;
+    }
+    .hero-cta:hover { background: var(--accent); gap: 1.25rem; }
+    .hero-cta .arrow { font-size: 1rem; }
+
+    .hero-stats {
+      display: flex; flex-direction: column; gap: 2rem;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .stat-item { border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 0.25rem;
+    }
+
+    /* SECTION COMMON */
+    section { padding: 6rem 4rem; border-bottom: 1px solid var(--border); }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    /* WORK */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+    .project-card {
+      background: var(--white);
+      overflow: hidden;
+      position: relative;
+    }
+    .project-card:first-child { grid-column: span 2; }
+    .project-thumb {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .project-card:first-child .project-thumb { aspect-ratio: 16/9; }
+    .project-card:hover .project-thumb { transform: scale(1.04); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-info { color: var(--white); }
+    .project-cat {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+    }
+    .project-link {
+      position: absolute; inset: 0;
+      z-index: 2;
+    }
+    .project-label {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .project-label .project-cat { color: var(--mid); margin-bottom: 0.15rem; }
+    .project-label .project-title {
+      font-size: 1rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--black);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-summary {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--black);
+      font-weight: 300;
+    }
+    .about-summary strong { font-weight: 500; color: var(--black); }
+    .about-summary p + p { margin-top: 1.25rem; }
+
+    .skills-block { display: flex; flex-direction: column; }
+    .skill-row {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .skill-name { font-weight: 500; letter-spacing: 0.03em; }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .exp-meta {}
+    .exp-period {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+    .exp-org {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+    .exp-content {}
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .exp-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .exp-points li {
+      font-size: 0.9rem;
+      color: var(--mid);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+    .exp-points li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.55em;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+    }
+    .contact-intro span { color: var(--accent); }
+
+    /* FORM */
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 500;
+    }
+    .form-input, .form-textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid var(--border);
+      padding: 0.75rem 0;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--black); }
+    .form-textarea { resize: none; height: 120px; }
+    .form-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      cursor: none;
+      transition: background 0.2s, gap 0.2s;
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+    .form-btn:hover { background: var(--accent); gap: 1.25rem; }
+    .form-success {
+      display: none;
+      padding: 1rem 1.25rem;
+      background: #f0faf0;
+      border-left: 3px solid #2a9d4e;
+      font-size: 0.9rem;
+      color: #1a6b36;
+    }
+    .form-success.visible { display: block; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+      .stat-item { min-width: 140px; }
+      section { padding: 4rem 2rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:first-child { grid-column: span 2; }
+      .about-grid, .contact-grid, .exp-item { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: span 1; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">TT</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <span class="hero-tag">Digital Marketing &amp; Content Strategist · Singapore</span>
+      <h1 class="hero-name">TERENCE<br/><span>TAN</span></h1>
+      <p class="hero-desc">10+ years building communities, campaigns, and content that move people — across government, education, and corporate sectors.</p>
+      <a href="#work" class="hero-cta">View Work <span class="arrow">→</span></a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">1<span>M+</span></div>
+        <div class="stat-label">Organic Facebook followers grown</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">540<span>K</span></div>
+        <div class="stat-label">Peak TikTok video views</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Years of cross-sector experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">SELECTED WORK</h2>
+    </div>
+    <div class="projects-grid reveal">
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/e5e481238017833.Y3JvcCwzMDk3LDI0MjMsNDIwOSw4NA.png" alt="NTU CCDS" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Content Strategy · Photography</div>
+            <div class="project-title">NTU CCDS</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238017833/NTU-CCDS" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Content Strategy · Photography</div>
+          <div class="project-title">NTU CCDS</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/164bd1238024291.Y3JvcCwyNTU2LDIwMDAsMCww.jpg" alt="Social Media" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Social Media</div>
+            <div class="project-title">Social Media</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238024291/Social-Media" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Social Media</div>
+          <div class="project-title">Social Media</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/8277a4238023789.Y3JvcCwxMjQyLDk3MSwwLDMwNw.jpg" alt="Design and Layout" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Print · Layout</div>
+            <div class="project-title">Design and Layout</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238023789/Design-and-Layout" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Print · Layout</div>
+          <div class="project-title">Design and Layout</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/f989ea238022973.Y3JvcCw0Mzk1LDM0MzgsMzgwLDA.jpg" alt="Video Production" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Video</div>
+            <div class="project-title">Video Production</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238022973/Video-Production" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Video</div>
+          <div class="project-title">Video Production</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/c3fbd4238077985.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.jpg" alt="Video Editing" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Video</div>
+            <div class="project-title">Video Editing</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238077985/Video-Editing" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Video</div>
+          <div class="project-title">Video Editing</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/e6cb8f238021111.Y3JvcCwxNzYxLDEzNzgsMCww.jpg" alt="Branding" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Branding</div>
+            <div class="project-title">Branding</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238021111/Branding" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Branding</div>
+          <div class="project-title">Branding</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/dbf33a238024723.Y3JvcCwyMDgyLDE2MjksNDEyLDA.jpg" alt="Social Media Marketing - BlueSG" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Social Media · Marketing</div>
+            <div class="project-title">BlueSG Campaign</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238024723/Social-Media-Marketing-BlueSG" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Social Media · Marketing</div>
+          <div class="project-title">BlueSG Campaign</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/c9f071238021837.Y3JvcCwxNTY5LDEyMjgsMzE0LDA.jpg" alt="Impact MMA" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Branding · Design</div>
+            <div class="project-title">Impact MMA</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238021837/Impact-MMA" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Branding · Design</div>
+          <div class="project-title">Impact MMA</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/ddc029238022461.Y3JvcCw0NzMsMzcwLDc2LDQ0.jpg" alt="Fight G" loading="lazy" />
+        <div class="project-overlay">
+          <div class="project-info">
+            <div class="project-cat">Branding · Design</div>
+            <div class="project-title">Fight G</div>
+          </div>
+        </div>
+        <a class="project-link" href="https://www.behance.net/gallery/238022461/Fight-G" target="_blank" rel="noopener"></a>
+        <div class="project-label">
+          <div class="project-cat">Branding · Design</div>
+          <div class="project-title">Fight G</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">ABOUT</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-summary reveal">
+        <p>I'm a <strong>digital marketing and content strategist</strong> based in Singapore, with over a decade of experience across government, education, and the corporate sector.</p>
+        <p>My work spans social media strategy, video production, graphic design, copywriting, and digital campaign management. I'm as comfortable behind a camera as I am in a spreadsheet or writing a brief.</p>
+        <p>Currently serving as <strong>Assistant Manager, Marcomms</strong> at the Singapore Human Resources Institute (SHRI), where I lead content planning, digital audits, and campaign execution for the organisation's 60th anniversary year.</p>
+        <p>I'm open to <strong>full-time roles and freelance engagements</strong> in digital marketing, content strategy, and creative production.</p>
+      </div>
+      <div class="skills-block reveal">
+        <div class="skill-row"><span class="skill-name">Digital Marketing &amp; Strategy</span></div>
+        <div class="skill-row"><span class="skill-name">Social Media Management</span></div>
+        <div class="skill-row"><span class="skill-name">Content Creation &amp; Copywriting</span></div>
+        <div class="skill-row"><span class="skill-name">Video Production &amp; Editing</span></div>
+        <div class="skill-row"><span class="skill-name">Graphic Design</span></div>
+        <div class="skill-row"><span class="skill-name">SEO / SEM</span></div>
+        <div class="skill-row"><span class="skill-name">WordPress &amp; Web Management</span></div>
+        <div class="skill-row"><span class="skill-name">Crisis Communication</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">EXPERIENCE</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Mar 2026 – Present</div>
+          <div class="exp-org">SHRI</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Assistant Manager, Marcomms</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Jun 2025 – Dec 2025</div>
+          <div class="exp-org">NTU CCDS</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Assistant Manager, Content Creator</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Jan 2024 – Apr 2025</div>
+          <div class="exp-org">PAP</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Assistant Manager / Senior Executive, Content Lead</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Jan 2014 – Feb 2022</div>
+          <div class="exp-org">NTUC</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Senior Executive / Executive, Social Media</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-period">Aug 2009 – Jun 2013</div>
+          <div class="exp-org">COAL</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Senior Graphic Designer / Graphic Designer</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">GET IN TOUCH</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="contact-intro">Let's build something<br/><span>worth talking about.</span></p>
+      </div>
+      <div class="reveal">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzdkkqyb" method="POST">
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name</label>
+            <input class="form-input" type="text" id="name" name="name" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" type="email" id="email" name="email" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input class="form-input" type="text" id="subject" name="subject" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="form-btn">Send Message <span>→</span></button>
+          <div class="form-success" id="formSuccess">
+            Message sent — I'll be in touch shortly.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Terence Tan</span>
+    <div class="footer-links">
+      <a href="https://www.behance.net/terencetan19" target="_blank" rel="noopener">Behance</a>
+      <a href="mailto:terence.tzj@hotmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Formspree AJAX submission
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          success.classList.add('visible');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
