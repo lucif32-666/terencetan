@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terence Tan — Digital Marketing & Content Strategist</title>
   <!-- Security headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://mir-s3-cdn-cf.behance.net https://pps.services.adobe.com data:; script-src 'self' 'unsafe-inline'; connect-src https://formspree.io; frame-ancestors 'none';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src https://formspree.io; frame-ancestors 'none';" />
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -191,56 +191,44 @@
     }
     .project-card {
       background: var(--white);
-      overflow: hidden;
       position: relative;
-    }
-    .project-card:first-child { grid-column: span 2; }
-    .project-thumb {
-      width: 100%; aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .project-card:first-child .project-thumb { aspect-ratio: 16/9; }
-    .project-card:hover .project-thumb { transform: scale(1.04); }
-    .project-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s;
+      padding: 2rem 1.75rem;
+      transition: background 0.2s ease;
+      min-height: 160px;
       display: flex;
-      align-items: flex-end;
-      padding: 1.5rem;
+      flex-direction: column;
+      justify-content: flex-end;
     }
-    .project-card:hover .project-overlay { opacity: 1; }
-    .project-info { color: var(--white); }
+    .project-card:hover { background: var(--accent); }
     .project-cat {
       font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
     }
+    .project-card:hover .project-cat { color: rgba(255,255,255,0.7); }
     .project-title {
       font-family: var(--font-display);
-      font-size: 1.4rem;
-      letter-spacing: 0.04em;
+      font-size: 1.6rem;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: var(--black);
+      transition: color 0.2s;
     }
+    .project-card:hover .project-title { color: var(--white); }
+    .project-arrow {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 1rem;
+      color: var(--border);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .project-card:hover .project-arrow { color: rgba(255,255,255,0.8); transform: translate(3px, -3px); }
     .project-link {
       position: absolute; inset: 0;
       z-index: 2;
-    }
-    .project-label {
-      padding: 1rem 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-    .project-label .project-cat { color: var(--mid); margin-bottom: 0.15rem; }
-    .project-label .project-title {
-      font-size: 1rem;
-      font-family: var(--font-body);
-      font-weight: 500;
-      letter-spacing: 0;
-      color: var(--black);
     }
 
     /* ABOUT */
@@ -495,153 +483,73 @@
     <div class="projects-grid reveal">
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/63a7ae248708625.69f83b2c827de.png" alt="SHRI" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">UX/UI · Videography · Web Design</div>
-            <div class="project-title">SHRI</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">UX/UI · Videography · Web Design</div>
+        <div class="project-title">Singapore Human Resources Institute</div>
         <a class="project-link" href="https://www.behance.net/gallery/248708625/Singapore-Human-Resources-Institute-(SHRI)" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">UX/UI · Videography · Web Design</div>
-          <div class="project-title">Singapore Human Resources Institute</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/e5e481238017833.Y3JvcCwzMDk3LDI0MjMsNDIwOSw4NA.png" alt="NTU CCDS" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Content Strategy · Photography</div>
-            <div class="project-title">NTU CCDS</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Content Strategy · Photography</div>
+        <div class="project-title">NTU CCDS</div>
         <a class="project-link" href="https://www.behance.net/gallery/238017833/NTU-CCDS" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Content Strategy · Photography</div>
-          <div class="project-title">NTU CCDS</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/164bd1238024291.Y3JvcCwyNTU2LDIwMDAsMCww.jpg" alt="Social Media" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Social Media</div>
-            <div class="project-title">Social Media</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Social Media</div>
+        <div class="project-title">Social Media</div>
         <a class="project-link" href="https://www.behance.net/gallery/238024291/Social-Media" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Social Media</div>
-          <div class="project-title">Social Media</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/8277a4238023789.Y3JvcCwxMjQyLDk3MSwwLDMwNw.jpg" alt="Design and Layout" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Print · Layout</div>
-            <div class="project-title">Design and Layout</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Print · Layout</div>
+        <div class="project-title">Design and Layout</div>
         <a class="project-link" href="https://www.behance.net/gallery/238023789/Design-and-Layout" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Print · Layout</div>
-          <div class="project-title">Design and Layout</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/f989ea238022973.Y3JvcCw0Mzk1LDM0MzgsMzgwLDA.jpg" alt="Video Production" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Video</div>
-            <div class="project-title">Video Production</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Video</div>
+        <div class="project-title">Video Production</div>
         <a class="project-link" href="https://www.behance.net/gallery/238022973/Video-Production" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Video</div>
-          <div class="project-title">Video Production</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/c3fbd4238077985.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.jpg" alt="Video Editing" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Video</div>
-            <div class="project-title">Video Editing</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Video</div>
+        <div class="project-title">Video Editing</div>
         <a class="project-link" href="https://www.behance.net/gallery/238077985/Video-Editing" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Video</div>
-          <div class="project-title">Video Editing</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/e6cb8f238021111.Y3JvcCwxNzYxLDEzNzgsMCww.jpg" alt="Branding" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Branding</div>
-            <div class="project-title">Branding</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Branding</div>
+        <div class="project-title">Branding</div>
         <a class="project-link" href="https://www.behance.net/gallery/238021111/Branding" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Branding</div>
-          <div class="project-title">Branding</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/dbf33a238024723.Y3JvcCwyMDgyLDE2MjksNDEyLDA.jpg" alt="Social Media Marketing - BlueSG" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Social Media · Marketing</div>
-            <div class="project-title">BlueSG Campaign</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Social Media · Marketing</div>
+        <div class="project-title">BlueSG Campaign</div>
         <a class="project-link" href="https://www.behance.net/gallery/238024723/Social-Media-Marketing-BlueSG" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Social Media · Marketing</div>
-          <div class="project-title">BlueSG Campaign</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/c9f071238021837.Y3JvcCwxNTY5LDEyMjgsMzE0LDA.jpg" alt="Impact MMA" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Branding · Design</div>
-            <div class="project-title">Impact MMA</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Branding · Design</div>
+        <div class="project-title">Impact MMA</div>
         <a class="project-link" href="https://www.behance.net/gallery/238021837/Impact-MMA" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Branding · Design</div>
-          <div class="project-title">Impact MMA</div>
-        </div>
       </div>
 
       <div class="project-card">
-        <img class="project-thumb" src="https://mir-s3-cdn-cf.behance.net/projects/404/ddc029238022461.Y3JvcCw0NzMsMzcwLDc2LDQ0.jpg" alt="Fight G" loading="lazy" />
-        <div class="project-overlay">
-          <div class="project-info">
-            <div class="project-cat">Branding · Design</div>
-            <div class="project-title">Fight G</div>
-          </div>
-        </div>
+        <span class="project-arrow">↗</span>
+        <div class="project-cat">Branding · Design</div>
+        <div class="project-title">Fight G</div>
         <a class="project-link" href="https://www.behance.net/gallery/238022461/Fight-G" target="_blank" rel="noopener noreferrer"></a>
-        <div class="project-label">
-          <div class="project-cat">Branding · Design</div>
-          <div class="project-title">Fight G</div>
-        </div>
       </div>
 
     </div>
